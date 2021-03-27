@@ -2109,6 +2109,7 @@ namespace LibreHardwareMonitor.Hardware.Motherboard
                             //t.Add(new Temperature("System", 1)); //Unused
                             t.Add(new Temperature("CPU", 2));
                             t.Add(new Temperature("SB (Chipset)", 3));
+
                             f.Add(new Fan("CPU Fan #1", 0)); //CPU_FAN1
                             f.Add(new Fan("Chassis Fan #1", 1)); //CHA_FAN1/WP
                             f.Add(new Fan("CPU Fan #2", 2)); //CPU_FAN2 (WP)
@@ -2120,24 +2121,64 @@ namespace LibreHardwareMonitor.Hardware.Motherboard
                             c.Add(new Ctrl("Chipset Fan", 3));
                             break;
                         }
-						
+                        case Model.B550M_Steel_Legend:
+                            v.Add(new Voltage("Vcore", 0, 10, 10));
+                            v.Add(new Voltage("+5V", 1, 20, 10));
+                            v.Add(new Voltage("AVCC", 2, 34, 34));
+                            v.Add(new Voltage("+3.3V", 3, 34, 34));
+                            v.Add(new Voltage("+12V", 4, 28, 5));
+                            v.Add(new Voltage("Vcore Refin", 5, 0, 1));
+                            v.Add(new Voltage("DRAM", 6, 0, 1, 0, false));
+                            v.Add(new Voltage("3VSB", 7, 34, 34));
+                            v.Add(new Voltage("VBat", 8, 34, 34));
+                            v.Add(new Voltage("VTT", 9, 0, 1, 0, false));
+                            v.Add(new Voltage("VDDCR_SOC", 10, 0, 1, 0, false));
+                            //v.Add(new Voltage("VIN6", 11, 0, 1));
+                            //v.Add(new Voltage("VIN2", 12, 0, 1));
+                            //v.Add(new Voltage("VIN3", 13, 0, 1, 0, false));
+                            v.Add(new Voltage("CPU VDD 1.8V", 14, 34, 34));
+                            //v.Add(new Voltage("VIN9", 15, 0, 1));
+
+                            t.Add(new Temperature("CPU", 1));
+                            t.Add(new Temperature("Motherboard", 2));
+                            //t.Add(new Temperature("Temperature #3", 3));
+                            //t.Add(new Temperature("Temperature #4", 4));
+                            //t.Add(new Temperature("Temperature #5", 5));
+                            //t.Add(new Temperature("Temperature #6", 6));
+                            //t.Add(new Temperature("Temperature #7", 7));
+                            //t.Add(new Temperature("Temperature #8", 8));
+
+                            f.Add(new Fan("CPU Fan #1", 1)); //CPU FAN1 (1)
+                            f.Add(new Fan("CPU Fan #2", 2)); //CPU FAN2/WP (2)
+                            f.Add(new Fan("Chassis Fan #1", 3)); //CHA_FAN1/WP (3)
+                            f.Add(new Fan("Chassis Fan #2", 4)); //CHA_FAN 2 (4)
+                            f.Add(new Fan("Chassis Fan #3", 0)); //CHA FAN 3 (0)
+                            f.Add(new Fan("Chassis Fan #4", 6)); //CHA_FAN 4 (6)
+
+                            c.Add(new Ctrl("CPU Fan #1", 1)); //CPU FAN1 (1)
+                            c.Add(new Ctrl("CPU Fan #2", 2)); //CPU FAN2/WP (2)
+                            c.Add(new Ctrl("Chassis Fan #1", 3)); //CHA_FAN1/WP (3)
+                            c.Add(new Ctrl("Chassis Fan #2", 4)); //CHA_FAN 2 (4)
+                            c.Add(new Ctrl("Chassis Fan #3", 0)); //CHA FAN 3 (0)
+                            c.Add(new Ctrl("Chassis Fan #4", 6)); //CHA_FAN 4 (6)
+                            break;
                         default:
                         {
                             v.Add(new Voltage("Vcore", 0, 10, 10));
-                            v.Add(new Voltage("Voltage #2", 1, true));
+                            v.Add(new Voltage("Voltage #2", 1, false));
                             v.Add(new Voltage("AVCC", 2, 34, 34));
                             v.Add(new Voltage("+3.3V", 3, 34, 34));
-                            v.Add(new Voltage("Voltage #5", 4, true));
-                            v.Add(new Voltage("Voltage #6", 5, true));
-                            v.Add(new Voltage("Voltage #7", 6, true));
+                            v.Add(new Voltage("Voltage #5", 4, false));
+                            v.Add(new Voltage("Voltage #6", 5, false));
+                            v.Add(new Voltage("Voltage #7", 6, false));
                             v.Add(new Voltage("3VSB", 7, 34, 34));
                             v.Add(new Voltage("VBat", 8, 34, 34));
                             v.Add(new Voltage("VTT", 9));
-                            v.Add(new Voltage("Voltage #11", 10, true));
-                            v.Add(new Voltage("Voltage #12", 11, true));
-                            v.Add(new Voltage("Voltage #13", 12, true));
-                            v.Add(new Voltage("Voltage #14", 13, true));
-                            v.Add(new Voltage("Voltage #15", 14, true));
+                            v.Add(new Voltage("Voltage #11", 10, false));
+                            v.Add(new Voltage("Voltage #12", 11, false));
+                            v.Add(new Voltage("Voltage #13", 12, false));
+                            v.Add(new Voltage("Voltage #14", 13, false));
+                            v.Add(new Voltage("Voltage #15", 14, false));
                             t.Add(new Temperature("CPU Core", 0));
                             t.Add(new Temperature("Temperature #1", 1));
                             t.Add(new Temperature("Temperature #2", 2));
@@ -2145,8 +2186,10 @@ namespace LibreHardwareMonitor.Hardware.Motherboard
                             t.Add(new Temperature("Temperature #4", 4));
                             t.Add(new Temperature("Temperature #5", 5));
                             t.Add(new Temperature("Temperature #6", 6));
+                            t.Add(new Temperature("Temperature #7", 7));
+                            t.Add(new Temperature("Temperature #8", 8));
 
-                            for (int i = 0; i < superIO.Fans.Length; i++)
+                                    for (int i = 0; i < superIO.Fans.Length; i++)
                                 f.Add(new Fan("Fan #" + (i + 1), i));
 
                             for (int i = 0; i < superIO.Controls.Length; i++)
